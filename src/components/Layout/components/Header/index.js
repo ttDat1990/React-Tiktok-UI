@@ -1,31 +1,25 @@
-import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind'; //Dùng bind để có thể dùng classname dạng a-b
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
-    faCircleXmark,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faSignOut,
-    faSpinner,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import HeadlessTippy from '@tippyjs/react/headless'; //tippy để làm tooltip và dropdown, headless dùng để làm phần dropdown mình tự code
 import Tippy from '@tippyjs/react'; //không có headless thì popper tự động
 import 'tippy.js/dist/tippy.css'; //này để dùng css cho tippy
 
 import Button from '~/components/Button';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import { MessIcon, PlusIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
+import Search from '~/components/Layout/components/Search';
 
 const cx = classNames.bind(styles);
 
@@ -60,16 +54,8 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-
     // Biến này để giả sử có thông tin log in hay không có để hiển thị UI cho phù hợp
     const currentUser = true;
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
 
     //handle logic
     const handleMenuChange = (menuItem) => {
@@ -105,32 +91,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <img src={images.logo} alt="tiktok" />
-                <HeadlessTippy
-                    interactive // thêm att này để có thể tương tác với dropdown hiện ra
-                    visible={searchResult.length > 0} // nếu có kết quả tìm kiếm thì hiện
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div> //đưa component wrapper vào trong thfi sẽ tùy chỉnh đc width của nó vì đã set width = 100% của parents
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search account and videos" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search />
 
                 <div className={cx('actions')}>
                     {currentUser ? (
@@ -158,7 +119,7 @@ function Header() {
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
                             <Image
-                                src="https://p16-sig-va.tiktokcdn.com/tos-maliva-avt-0068/99627c25b432f93fb5ed8812c7b263c2~c5_100x100.jpeg?x-expires=1690988400&x-signature=VAnVVIvTst%2F5CudqAgk85F6WD34%3D"
+                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/99627c25b432f93fb5ed8812c7b263c2~c5_100x100.jpeg?x-expires=1690988400&x-signature=VAnVVIvTst%2F5CudqAgk85F6WD34%3D"
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
                             />

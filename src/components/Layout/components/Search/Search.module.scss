@@ -1,0 +1,97 @@
+.search,
+.search-result {
+    width: 361px; // bề rộng của toàn bộ ô tìm kiếm
+}
+
+.search {
+    position: relative; //dùng cho after
+    height: var(--search-height);
+    padding-left: 16px;
+    display: flex;
+    background-color: rgba(22, 24, 35, 0.06);
+    border-radius: var(--search-border-radius);
+    border: 1.5px solid transparent; //cho border sẵn để khi focus hiện border ko bị co lại
+
+    input {
+        flex: 1; //để tràn ra chiếm chỗ toàn bộ còn lại
+        height: 100%;
+        font-size: 1.6rem;
+        caret-color: var(--primary); //màu của dấu nháy search
+        color: var(--black);
+        padding: 12px 0;
+        background-color: transparent; //cho trong suốt
+    }
+
+    //khi trong thẻ input ko co palcehoder nữa -> ảnh hưởng qua class search-btn như sau
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+    &::after {
+        // sudo thì ghi &::
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: var(--search-button-width);
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        width: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:focus-within {
+        //nhấn vào (focus) sẽ hiện màu border
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+
+.search-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.clear,
+.loading {
+    position: absolute; //để không ảnh hưởng thẻ khác khi nó ân hiện
+    right: calc(var(--search-button-width) + 16px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+
+.loading {
+    animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.clear {
+    cursor: pointer;
+}
+
+.search-btn {
+    width: var(--search-button-width);
+    height: 100%;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    font-size: 1.8rem; //kích thước icon kính lúp
+    color: rgba(22, 24, 35, 0.34);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &:active {
+        //:active là nhấn vào: sẽ đổi màu nền bgc như ở dưới
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
