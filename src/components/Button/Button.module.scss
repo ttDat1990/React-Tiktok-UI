@@ -1,0 +1,91 @@
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    padding: 9px 16px;
+    border-radius: 4px;
+    font-size: 1.6rem; //tăng fontsize lên khi nào đủ chiều cao thì mới chỉnh padding topbot
+    font-weight: 700;
+    cursor: pointer;
+    background-color: var(--white);
+    border: 1px solid transparent;
+    user-select: none; // bỏ select chữ
+
+    + .wrapper {
+        margin-left: 8px; //nếu 2 wrapper cạnh nhau thì margin ra
+    }
+}
+
+.icon + .title,
+.title + .icon {
+    margin-left: 8px;
+}
+
+.icon {
+    display: inline-block; //để có thể set được width (vừa trên 1 dòng vừa có thể set width, heigh)
+    width: 24px;
+    text-align: center; //căn giữa cho nội dung trong chính thẻ đó
+}
+
+//button types
+
+.rounded {
+    border-radius: 999px; // cho lớn lên là tự tròn luôn
+    color: rgba(22, 24, 35, 0.75);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-color: rgba(22, 24, 35, 0.12);
+
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.2);
+        background-color: rgba(255, 255, 255, 1);
+    }
+}
+
+.primary {
+    color: var(--white);
+    background-color: var(--primary);
+    border-color: var(--primary);
+    box-shadow: none;
+
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+        border-color: var(--primary);
+    }
+
+    &.disabled {
+        //css ở đây để có độ ưu tiên, nếu có cùng với style khác thì nó vẫn đè lên
+        pointer-events: none; // mất chuột
+        opacity: 0.5;
+    }
+}
+
+.outline {
+    color: var(--primary);
+    border-color: currentColor; //ăn theo màu ở trên
+    box-shadow: none;
+
+    &:hover {
+        border-color: currentColor;
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+}
+
+.text {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+//disabled
+
+//button size
+.small {
+    min-width: 88px;
+    padding: 4px 16px;
+}
+
+.large {
+    min-width: 148px;
+    padding: 14px 16px;
+}

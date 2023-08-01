@@ -1,0 +1,69 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap'); //'tên font google', chọn các font cần, tích vào @import
+
+:root {
+    --primary: rgba(254, 44, 85, 1); //biến màu chủ đạo
+    --black: #000;
+    --white: #fff;
+    --text-color: #333;
+
+    //default layout
+    --default-layout-header-height: 60px;
+    --default-layout-width: 1150px;
+    --default-layout-horizontal-spacer: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; // kích thước thẻ bằng với kích thước border
+}
+
+html {
+    font-size: 62.5%; //hack tỷ lệ chữ
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; //font lấy trên google font mục CSS rules to specify families
+    font-size: 1.6rem;
+    line-height: 1.5; // chiều cao tổng của 1 dòng
+    text-rendering: optimizeSpeed; // tối ưu tốc độ hiển thị font
+    color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none; // mất outline khi focus để type
+    border: none;
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+//custom tippy tooltip
+body {
+    // đi qua body cho độ ưu tiên cao
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: rgba(84, 84, 84, 0.92);
+        color: rgb(255, 255, 255);
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+    }
+
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow {
+        top: -1px;
+    }
+}
