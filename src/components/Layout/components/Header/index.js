@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudUpload,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
@@ -25,6 +24,8 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import { MessIcon, PlusIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -134,9 +135,17 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                            <Button className={cx('upload-btn')} leftIcon={<PlusIcon />}>
+                                Upload
+                            </Button>
+                            <Tippy delay={[0, 80]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 80]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -148,8 +157,8 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
-                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/99627c25b432f93fb5ed8812c7b263c2~c5_100x100.jpeg?x-expires=1690988400&x-signature=VAnVVIvTst%2F5CudqAgk85F6WD34%3D"
+                            <Image
+                                src="https://p16-sig-va.tiktokcdn.com/tos-maliva-avt-0068/99627c25b432f93fb5ed8812c7b263c2~c5_100x100.jpeg?x-expires=1690988400&x-signature=VAnVVIvTst%2F5CudqAgk85F6WD34%3D"
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
                             />

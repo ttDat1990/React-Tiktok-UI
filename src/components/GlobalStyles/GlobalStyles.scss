@@ -1,5 +1,5 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap'); //'tên font google', chọn các font cần, tích vào @import
+//@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap'); //'tên font google', chọn các font cần, tích vào @import
 
 :root {
     --primary: rgba(254, 44, 85, 1); //biến màu chủ đạo
@@ -24,7 +24,7 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; //font lấy trên google font mục CSS rules to specify families
+    font-family: 'Proximanova', sans-serif; //font lấy trên google font mục CSS rules to specify families
     font-size: 1.6rem;
     line-height: 1.5; // chiều cao tổng của 1 dòng
     text-rendering: optimizeSpeed; // tối ưu tốc độ hiển thị font
@@ -41,6 +41,31 @@ input,
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+
+//fonts embedded
+@font-face {
+    font-family: Proximanova;
+    src: url('/assets/fonts/TikTokFont-Regular.woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Proximanova;
+    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Proximanova;
+    src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Sofiapro;
+    src: url('/assets/fonts/TikTokFont-Regular (1).woff2');
+    font-weight: 700;
 }
 
 //custom tippy tooltip
