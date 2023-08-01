@@ -15,9 +15,15 @@
     width: 100%;
     justify-content: flex-start;
     border-radius: 0;
-    font-weight: 550;
+    font-weight: 600;
     padding: 11px 16px;
     line-height: 1.8rem;
+
+    &.separate {
+        //CSS selector 2 class liền nhau ko khoảng tắng thì là chọn element có cả 2 class đó
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
+    }
+
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
     }

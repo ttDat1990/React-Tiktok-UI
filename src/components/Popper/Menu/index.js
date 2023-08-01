@@ -43,6 +43,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
     return (
         <Tippy
             delay={[0, 700]}
+            offset={[12, 8]} // offset dropdown theo hpwuwogn ngang, cao px
             interactive // thêm att này để có thể tương tác với dropdown hiện ra
             placement="bottom-end" //vị trí
             render={(attrs) => (

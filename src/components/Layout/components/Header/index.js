@@ -5,11 +5,15 @@ import {
     faCircleQuestion,
     faCircleXmark,
     faCloudUpload,
+    faCoins,
     faEarthAsia,
     faEllipsisVertical,
+    faGear,
     faKeyboard,
     faMagnifyingGlass,
+    faSignOut,
     faSpinner,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless'; //tippy để làm tooltip và dropdown, headless dùng để làm phần dropdown mình tự code
 import Tippy from '@tippyjs/react'; //không có headless thì popper tự động
@@ -73,11 +77,27 @@ function Header() {
 
     const userMenu = [
         {
-            icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-            title: 'Feedback and help',
-            to: '/feedback',
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View profile',
+            to: '/@hoaa',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Get coins',
+            to: '/coin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Setting',
+            to: '/settings',
         },
         ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faSignOut} />,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
     ];
 
     return (
