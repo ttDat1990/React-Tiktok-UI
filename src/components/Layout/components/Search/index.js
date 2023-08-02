@@ -1,13 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
-import classNames from 'classnames/bind'; //Dùng bind để có thể dùng classname dạng a-b
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless'; //tippy để làm tooltip và dropdown, headless dùng để làm phần dropdown mình tự code
 import 'tippy.js/dist/tippy.css'; //này để dùng css cho tippy
+import classNames from 'classnames/bind'; //Dùng bind để có thể dùng classname dạng a-b
+
+import * as searchService from '~/apiService/searchServices';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import styles from './Search.module.scss';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
+import { useDebounce } from '~/hooks'; //dùng để delay quá trình call api
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -17,27 +20,31 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    const debounced = useDebounce(searchValue, 500); // debounced giá trị searchValue với thời gian là 500ms
+
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
+            const result = await searchService.search(debounced);
+            setSearchResult(result);
+            setLoading(false);
+        };
 
-        //nối chuỗi thì phải bao chuỗi bằng ``, khi truyền searchValue thì encode để tránh truyền vào chuỗi kí tự đặc biệt
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    }, [searchValue]); // khi user gõ sẽ onchange thẻ input và setSearchValue -> lọt vào trong useEffect
+        fetchApi();
+
+        //nối chuỗi thì phải bao chuỗi bằng ``, khi truyền searchValue(debounced) thì encode để tránh truyền vào chuỗi kí tự đặc biệt
+        //thay thế bằng axios thì ko cần encode, sử dụng dạng obj để truyền param, bỏ qua bước parse json .then((res) => res.json())
+        // thay axios bằng request đã cấu hình thì ko cần đưa đoạn url api dài vô nữa
+        // thay request .get bằng get đã cấu hình
+        //cấu hình gọi api ở ngoài luôn (searchService)
+    }, [debounced]); // khi user gõ sẽ onchange thẻ input và setSearchValue (lúc này đã trở thàn debounced để delay call api) -> lọt vào trong useEffect
 
     const handleClear = () => {
         setSearchValue(''); //khi click vài x thì set lại searchvalue = rỗng => xóa nó trong input
