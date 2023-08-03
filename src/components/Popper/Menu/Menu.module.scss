@@ -10,6 +10,10 @@
     padding-bottom: 8px;
 }
 
+.menu-body {
+    overflow-y: auto; //auto: thanh cuộn sẽ đẩy content ra 1 tí, với điều kiện phải có max-height
+}
+
 //menu item
 .menu-item {
     width: 100%;
@@ -32,6 +36,7 @@
 //header
 .header {
     position: relative;
+    flex-shrink: 0; // khi display flex thì nếu không có chỗ, các item bị co lai, để flex-shrinhk=0 thì sẽ ko bị co nữa mà đẩy kích htuwwocs bao ngoài tăng lên
     height: 50px;
     margin-top: -8px;
 }

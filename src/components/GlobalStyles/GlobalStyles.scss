@@ -31,6 +31,23 @@ body {
     line-height: 1.5; // chiều cao tổng của 1 dòng
     text-rendering: optimizeSpeed; // tối ưu tốc độ hiển thị font
     color: var(--text-color);
+    overflow-y: overlay; // tất cả thanh cuộn sẽ nổi lên
+}
+
+//scroll bar css, thông thường css scrollbar sẽ nằm ở thẻ body
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 button,

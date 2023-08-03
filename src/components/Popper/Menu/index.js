@@ -42,7 +42,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
     }; // render ra từng item trong mảng items
     return (
         <Tippy
-            delay={[0, 700]}
+            delay={[0, 400]}
             offset={[12, 8]} // offset dropdown theo hpwuwogn ngang, cao px
             interactive // thêm att này để có thể tương tác với dropdown hiện ra
             hideOnClick={hideOnClick} //thêm prop này để khi click vào icon avatar thi ko bị ẩn tippy menu đi
@@ -58,7 +58,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}

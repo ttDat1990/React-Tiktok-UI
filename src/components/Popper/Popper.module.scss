@@ -1,4 +1,6 @@
 .wrapper {
+    display: flex; // flex cho header và các menuitem
+    flex-direction: column; // xoay chiều để nó dàn hàng dọc
     width: 100%; //để 100% thì khi dùng cho thằng nào mình sẽ custom width riêng cho thằng đó
     max-height: min((100vh - 96px) - 60px, 760px);
     min-height: 100px;
