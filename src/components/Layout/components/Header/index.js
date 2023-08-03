@@ -12,7 +12,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react'; //không có headless thì popper tự động
 import 'tippy.js/dist/tippy.css'; //này để dùng css cho tippy
+import { Link } from 'react-router-dom';
 
+import routesConfig from '~/config/routes';
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -90,7 +92,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="tiktok" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="tiktok" />
+                </Link>
                 <Search />
 
                 <div className={cx('actions')}>

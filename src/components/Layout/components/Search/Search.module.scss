@@ -15,6 +15,7 @@
     input {
         flex: 1; //để tràn ra chiếm chỗ toàn bộ còn lại
         height: 100%;
+        font-family: var(--font-family);
         font-size: 1.6rem;
         caret-color: var(--primary); //màu của dấu nháy search
         color: var(--black);

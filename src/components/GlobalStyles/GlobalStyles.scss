@@ -7,6 +7,8 @@
     --white: #fff;
     --text-color: #161823;
 
+    --font-family: 'Proximanova', sans-serif;
+
     //default layout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
@@ -24,7 +26,7 @@ html {
 }
 
 body {
-    font-family: 'Proximanova', sans-serif; //font lấy trên google font mục CSS rules to specify families
+    font-family: var(--font-family); //font lấy trên google font mục CSS rules to specify families
     font-size: 1.6rem;
     line-height: 1.5; // chiều cao tổng của 1 dòng
     text-rendering: optimizeSpeed; // tối ưu tốc độ hiển thị font

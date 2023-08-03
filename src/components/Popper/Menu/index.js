@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {}; //để là hàm mặc định, khi ko truyền onchange thì sẽ ko lỗi
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
     //  Ý tưởng là state chứa 1 array, trong array đó có object(s): dạng như là: [{__},{__},...{__}].
     //  Luật là: luôn dùng object cuối cùng để map ra UI.
     //  Ban đầu state có 1 object là {data: items} => items (level.1) sẽ được map ra UI.
@@ -45,6 +45,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             delay={[0, 700]}
             offset={[12, 8]} // offset dropdown theo hpwuwogn ngang, cao px
             interactive // thêm att này để có thể tương tác với dropdown hiện ra
+            hideOnClick={hideOnClick} //thêm prop này để khi click vào icon avatar thi ko bị ẩn tippy menu đi
             placement="bottom-end" //vị trí
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>

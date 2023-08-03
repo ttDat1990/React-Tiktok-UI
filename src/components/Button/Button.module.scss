@@ -7,7 +7,7 @@
     border-radius: 4px;
     font-size: 1.6rem; //tăng fontsize lên khi nào đủ chiều cao thì mới chỉnh padding topbot
     font-weight: 700;
-    font-family: 'Proximanova', sans-serif;
+    font-family: var(--font-family);
     cursor: pointer;
     background-color: var(--white);
     border: 1px solid transparent;

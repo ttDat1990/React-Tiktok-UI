@@ -46,6 +46,7 @@ function Search() {
         //cấu hình gọi api ở ngoài luôn (searchService)
     }, [debounced]); // khi user gõ sẽ onchange thẻ input và setSearchValue (lúc này đã trở thàn debounced để delay call api) -> lọt vào trong useEffect
 
+    //Logic cho dấu x clear kết quả
     const handleClear = () => {
         setSearchValue(''); //khi click vài x thì set lại searchvalue = rỗng => xóa nó trong input
         setSearchResult([]); // khi nhấn x cũng đồng thòi clear luôn kết quả tìm kiếm trả về
@@ -54,6 +55,15 @@ function Search() {
 
     const handleHideResult = () => {
         setShowResult(false); // chuyển showResult thành false để ẩn
+    };
+
+    //Xử lý ko cho nhập dấu space đầu tiên
+    const handleChange = (e) => {
+        //Xử lý ko cho nhập dấu cách ở đay thì sẽ ko bị re-render nhiều
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
     };
 
     return (
@@ -78,7 +88,7 @@ function Search() {
                     value={searchValue} //đưa giá trị mới nhập vô đây, 2 ways binding
                     placeholder="Search account and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)} //onchange: khi có user gõ tìm trong thẻ input thì setSearchValue bằng giá trị mới nhập vô
+                    onChange={handleChange} //onchange: khi có user gõ tìm trong thẻ input thì setSearchValue bằng giá trị mới nhập vô
                     onFocus={() => setShowResult(true)} // focus vào input thì lại cho showResult=true để hiện tippy lên
                 />
                 {!!searchValue && !loading && (
@@ -87,7 +97,8 @@ function Search() {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                    {/* e.preventDefault loại bỏ hàn vi mặc định khi onMousedown */}
                     <SearchIcon />
                 </button>
             </div>
