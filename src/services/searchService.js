@@ -1,8 +1,8 @@
-import * as request from '~/utils/request'; // import tất cả export lẻ cho vào 1 ojobj tên là request
+import * as httpRequest from '~/utils/httpRequest'; // import tất cả export lẻ cho vào 1 ojobj tên là request
 
 export const search = async (q, type = 'less') => {
     try {
-        const res = await request.get('users/search', {
+        const res = await httpRequest.get('users/search', {
             params: {
                 q,
                 type,

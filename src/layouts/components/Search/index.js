@@ -5,7 +5,7 @@ import HeadlessTippy from '@tippyjs/react/headless'; //tippy để làm tooltip 
 import 'tippy.js/dist/tippy.css'; //này để dùng css cho tippy
 import classNames from 'classnames/bind'; //Dùng bind để có thể dùng classname dạng a-b
 
-import * as searchService from '~/apiService/searchServices';
+import * as searchService from '~/services/searchService';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
